@@ -130,12 +130,12 @@ st.markdown(
     <div class="footer">
         <p>🛠️ Built with ❤️ by <strong>ldotmithu</strong></p>
         <p>
-            <a href="https://github.com/your-github-profile" target="_blank">
+            <a href="https://github.com/ldotmithu" target="_blank">
                 <img src="https://img.icons8.com/ios-filled/50/000000/github.png" width="20" height="20"/>
                 GitHub
             </a>
             &nbsp;|&nbsp;
-            <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank">
+            <a href="https://www.linkedin.com/in/mithurshan6/" target="_blank">
                 <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" width="20" height="20"/>
                 LinkedIn
             </a>
