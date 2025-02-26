@@ -9,7 +9,7 @@ load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Initialize the prediction pipeline
+
 prediction_pipeline = Predication_Pipeline()
 
 class GenAI:
@@ -87,16 +87,15 @@ class GenAI:
             column_names = ['Age', 'SystolicBP', 'DiastolicBP', 'BS', 'BodyTemp', 'HeartRate']
             prompt_template = self.system_prompt()
 
-            # Convert input data to DataFrame
             input_data_df = pd.DataFrame(input_data, columns=column_names)
 
-            # Preprocess the input data
+       
             input_data_processed = prediction_pipeline.transform(input_data_df)
 
-            # Make a prediction
+          
             predicted_value = prediction_pipeline.prediction(input_data_processed)[0]
 
-            # Generate AI response
+            
             rag_chain = LLMChain(llm=self.llm, prompt=prompt_template)
             response = rag_chain.invoke({"input_data": input_data, "prediction": predicted_value})
             return response["text"]
