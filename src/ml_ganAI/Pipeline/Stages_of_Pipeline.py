@@ -1,6 +1,7 @@
 from src.ml_ganAI.components.data_ingestion import DataIngestion
 from src.ml_ganAI.components.data_validation import DataValidation
 from src.ml_ganAI.components.data_transfomation import DataTransform
+from src.ml_ganAI.components.model_trainer import ModelTrainer
 from src.ml_ganAI.Config.config_entity import DataTransfomationConfig
 from src.ml_ganAI import logging
 
@@ -35,6 +36,16 @@ class DataTransformPipeline:
                 logging.error('Data Validation Sataus is False')
             else:    
                 transform = DataTransform()
-                transform.get_initiate_preprocess()    
+                transform.get_initiate_preprocess()  
+                
+
+class ModelTrainPipeline:
+    def __init__(self):
+        pass
+    
+    def main(self):
+        trainer = ModelTrainer()
+        trainer.initiate_model_training()                   
+                  
                     
         

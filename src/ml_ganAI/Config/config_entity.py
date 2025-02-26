@@ -21,6 +21,13 @@ class DataTransfomationConfig:
     status_path:Path = "artifacts/data_validation/Status.txt"
     data_path:Path = "artifacts/data_ingestion"
     preprocess_path:str = "preprocess.pkl"
+    
+@dataclass
+class ModelTrainerConfig:
+    root_dir:Path= "artifacts/trainer" 
+    train_data_path:Path = "artifacts/data_transform/train.npy"
+    model_path = "model.pkl"
+      
         
     
     
