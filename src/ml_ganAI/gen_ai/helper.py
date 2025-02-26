@@ -1,50 +1,104 @@
 from langchain_groq import ChatGroq
-from langchain.chains import create_retrieval_chain,LLMChain,RetrievalQA
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.prompts import ChatPromptTemplate,PromptTemplate
-from langchain_community.vectorstores import FAISS
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
+import pandas as pd
 import os
 from dotenv import load_dotenv
-
+from src.ml_ganAI.Pipeline.prediction import Predication_Pipeline  
 load_dotenv()
+
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-prompt_template = PromptTemplate(
-    input_variables=["input_data", "prediction"],
-    template="""
-    You are a Mental Health Risk Medical Assistant. Your role is to explain why a specific risk level (High, Middle, or Low) was predicted based on the user's input and provide simple, actionable suggestions to address it. Use easy-to-understand language and focus on the most relevant factors contributing to the risk level.
+# Initialize the prediction pipeline
+prediction_pipeline = Predication_Pipeline()
 
-    ### **Patient Data & Risk Level Prediction:**
-    - Input Data: {input_data}
-    - Predicted Risk Level: {prediction}
+class GenAI:
+    def __init__(self):
+        self.llm = ChatGroq(temperature=0.5, groq_api_key=GROQ_API_KEY, model_name="mixtral-8x7b-32768")
+        
+    def system_prompt(self):
 
-    ### **Steps to Follow:**
-    1. **Explain the Risk Level**: Briefly describe why the user's input led to the predicted risk level. Highlight the most significant factors (Age, SystolicBP, DiastolicBP, BS, BodyTemp, HeartRate) that contributed to the prediction.
-    2. **Provide Suggestions**: Offer clear, practical, and personalized recommendations based on the risk level. Include food suggestions, entertainment ideas, if the user is at High or Middle risk. If the user is at Low risk, provide a positive greeting and general wellness tips.
 
-    ### **Example Format:**
-    - **Risk Level**: [High/Middle/Low]
-    - **Why This Happened**: [Brief explanation of the risk factors.]
-    - **Suggestions**: [Actionable steps, food suggestions]
+        prompt_template = PromptTemplate(
+            input_variables=["input_data", "prediction"],
+            template="""
+            You are a Mental Health Risk Medical Assistant. Your role is to **analyze the user's health data** and explain why a specific risk level was predicted. Then, provide **structured, actionable suggestions** to improve their mental and physical well-being.
 
-    ### **Response:**
-    """
-)
-llm = ChatGroq(temperature=0.5, groq_api_key=GROQ_API_KEY, model_name="mixtral-8x7b-32768")
+            ---
+            ### 🏥 Patient Data & Risk Level Prediction:
+            - **Input Data:** {input_data}
+            - **Predicted Risk Level:** {prediction} (0 = Low, 1 = Medium, 2 = High)
 
-rag_chain = LLMChain(llm=llm, prompt=prompt_template)
+            ---
+            ### 📌 **Risk Assessment Summary**
+            Risk Level :- [High Level / Medium Level / Low Level]
 
-# Input data and prediction
-input_data = [[29,90,70,8,100,80]]  # Example input
-prediction = model.predict(input_data)  # Get prediction from your ML model
+            🔍 Why This Happened:
+            - [Explain why this risk level was assigned based on key factors: Age, SystolicBP, DiastolicBP, BS, BodyTemp, HeartRate.]
 
-# Convert input and prediction to strings
-input_data_str = str(input_data)
-prediction_str = str(prediction[0])
+            ---
+            ### ✅ **Personalized Health Recommendations**
+            #### 🔹 **Actionable Steps**  
+            1. [Step 1: Practical lifestyle or medical advice]
+            
+            2. [Step 2: A simple daily improvement tip]
 
-# Generate response using the RAG chain
-response = rag_chain.invoke({"input_data": input_data_str, "prediction": prediction_str})
-print(response["text"])
+            #### 🍏 Food Recommendations 
+            Healthy food suggestions for mental and physical well-being  
+
+            #### 🎭 Entertainment & Wellness Ideas  
+            [Suggestions like meditation, light exercise, or stress-relieving activities  
+            
+            If the prediction is low level, I'll just send a greeting or a wish to maintain the same level. If advice is needed, I'll provide it. Let me know what you need! 😊 
+
+            ---
+            ### 📝 Example Response:
+            
+            🏥 Risk Level :- **High Level**  
+
+            🔍 Why This Happened: 
+            > The user has **high blood sugar (BS: 90.0)** and an **elevated heart rate (HR: 50.0)**, both of which can contribute to anxiety and long-term mental stress.  
+
+            ---
+            ### ✅ Personalized Health Recommendations
+            #### 🔹 **Actionable Steps**  
+            1. Consult a healthcare professional** to manage high blood sugar levels.  
+            2. Practice deep breathing exercises** or progressive muscle relaxation to lower heart rate and reduce stress.  
+
+            #### 🍏 Food Recommendations 
+            - Incorporate whole grains, lean proteins, fruits, and vegetables into your diet.  
+            - Limit processed foods, sugary drinks, and caffeine  
+
+            #### 🎭 Entertainment & Wellness Ideas
+            - Engage in yoga, tai chi, or mindfulness meditation** for relaxation.  
+            - Spend time in nature, read a book, or listen to calming music.  
+            
+            
+
+            """
+            
+        )
+
+
+        return prompt_template
+    
+    def response(self, input_data):
+        try:
+            column_names = ['Age', 'SystolicBP', 'DiastolicBP', 'BS', 'BodyTemp', 'HeartRate']
+            prompt_template = self.system_prompt()
+
+            # Convert input data to DataFrame
+            input_data_df = pd.DataFrame(input_data, columns=column_names)
+
+            # Preprocess the input data
+            input_data_processed = prediction_pipeline.transform(input_data_df)
+
+            # Make a prediction
+            predicted_value = prediction_pipeline.prediction(input_data_processed)[0]
+
+            # Generate AI response
+            rag_chain = LLMChain(llm=self.llm, prompt=prompt_template)
+            response = rag_chain.invoke({"input_data": input_data, "prediction": predicted_value})
+            return response["text"]
+        except Exception as e:
+            return f"Error generating response: {str(e)}"
