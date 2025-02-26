@@ -21,7 +21,7 @@ class ModelEvaluation:
         model_obj = joblib.load(self.model_evaluation.model_path)
         prd = model_obj.predict(test_input_feature)
         acc= accuracy_score(test_target_feature,prd)
-        print("acc_score : ",acc)
         save_object(file_path=os.path.join(self.model_evaluation.root_dir,self.model_evaluation.metrics_path),
                     obj=acc)
+        logging.info(f"acc_score :{acc} ")
         

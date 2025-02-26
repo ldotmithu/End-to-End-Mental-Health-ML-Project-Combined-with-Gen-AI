@@ -20,13 +20,13 @@ class ModelTrainer:
         train_data_input_feature = train_data[:,:-1]
         train_data_target_feature = train_data[:,-1] 
           
-        #xgb = XGBClassifier()  
+    
         
         xgb = XGBClassifier(min_child_weight=self.perams.get("min_child_weight"),
                            max_depth = self.perams.get("max_depth"))
         
         xgb.fit(train_data_input_feature,train_data_target_feature)
-        print(xgb.score(train_data_input_feature,train_data_target_feature))
+        #print(xgb.score(train_data_input_feature,train_data_target_feature))
         
         joblib.dump(xgb,os.path.join(self.trainer.root_dir,self.trainer.model_path))
         logging.info("save the model.pkl")       
