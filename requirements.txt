@@ -1,0 +1,27 @@
+pandas 
+mlflow==2.2.2
+notebook
+numpy
+scikit-learn
+matplotlib
+python-box
+pyYAML
+tqdm
+joblib
+types-PyYAML
+Flask
+Flask-Cors
+dill
+streamlit
+imblearn
+xgboost
+ipykernel 
+seaborn
+matplotlib
+langchain_groq
+langchain_community
+faiss-cpu
+python-dotenv
+pypdf
+langchain_huggingface
+-e .
