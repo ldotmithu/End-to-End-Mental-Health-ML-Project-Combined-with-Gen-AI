@@ -9,3 +9,10 @@ class DataIngestionConfig:
     local_data_path:Path =  "artifacts/data_ingestion/data.zip"
     unzip_dir:Path = "artifacts/data_ingestion"
     
+@dataclass
+class DataValidationConfig:
+    root_dir:Path = "artifacts/data_validation"
+    data_path:Path = "artifacts/data_ingestion"
+    status_path:str = "artifacts/data_validation/Status.txt"
+    
+    

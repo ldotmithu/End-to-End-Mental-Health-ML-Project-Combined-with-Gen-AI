@@ -1,0 +1,28 @@
+COLUMNS:  
+  Age: int64
+  SystolicBP: int64
+  DiastolicBP: int64
+  BS: float64
+  BodyTemp: float64
+  HeartRate: int64
+  RiskLevel: object
+
+TARGET:
+  - RiskLevel
+
+DROP_COLUMNS:
+  - 
+
+POWER:
+  - Age
+  - BodyTemp
+
+NUM_COLUMNS:
+  - Age
+  - SystolicBP
+  - DiastolicBP
+  - BS
+  - BodyTemp
+  - HeartRate
+
+
