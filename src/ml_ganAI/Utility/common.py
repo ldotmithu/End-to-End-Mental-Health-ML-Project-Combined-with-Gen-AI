@@ -34,16 +34,6 @@ def check_xls_occur(dir_path):
         logging.error("Multipule xls files are there")
         return None  
     
-def remove_out(data,col):
-    Q1 = np.percentile(data[col],25)
-    Q3 = np.percentile(data[col],75)
-    IQR = Q3-Q1
-    lower = Q1 - 1.5 * IQR
-    upper = Q3 +1.5 *IQR
-    data = data[(data[col] > lower) & (data[col] < upper)]
-    logging.info(f"remove the outlier {col}")
-    return data    
-
 def save_object(file_path,obj):
     try:
         with open(file_path,'w') as f:
