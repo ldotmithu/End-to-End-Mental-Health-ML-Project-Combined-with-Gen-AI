@@ -24,7 +24,7 @@ list_of_path = [
     "requirements.txt",
     "setup.py",
     "schema.yaml",
-    "parems.yaml"
+    "parems.yaml",
     "notebook/trail.ipynb"
 ]
 
