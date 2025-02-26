@@ -19,7 +19,7 @@ This project integrates **Machine Learning (ML) and Generative AI** to predict a
 - **Programming Language:** Python
 - **Machine Learning:** Scikit-learn, Pandas,Numpy
 - **Generative AI:**  Groq (Mixtral model), LangChain, LLM
-- **Frontend (Optional):** Streamlit
+- **Frontend :** Streamlit
 
 ---
 
@@ -57,20 +57,16 @@ streamlit run app.py
 
 ---
 
-## 🤝 Contribution
-1. Fork the repository.
-2. Create a new branch.
-3. Commit your changes.
-4. Submit a pull request.
-
----
-
 ### Contributor: L. Mithurshan
 ---
 
 ## 📜 License
 This project is licensed under the **Apache-2.0 license**.
+---
 
+## **Glance of the Project**
+
+![image](https://github.com/ldotmithu/Dataset/blob/main/Screenshot%20(10).png)
 ---
 
 Feel free to update or modify the README as needed. Happy coding! 😊
