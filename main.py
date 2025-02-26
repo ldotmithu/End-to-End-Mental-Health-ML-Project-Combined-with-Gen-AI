@@ -1,5 +1,5 @@
 from src.ml_ganAI.Pipeline.Stages_of_Pipeline import (DataIngestionPipeline,DataValidationPipeline,
-                                                      DataTransformPipeline,ModelTrainPipeline)
+                                                      DataTransformPipeline,ModelTrainPipeline,ModelEvaluationPipeline)
 from src.ml_ganAI import logging
 
 try:
@@ -30,6 +30,14 @@ try:
     logging.info("Model training started...")
     trainer = ModelTrainPipeline()
     trainer.main()
+    logging.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+except Exception as e:
+    raise e 
+
+try:
+    logging.info("Model Evaluation started...")
+    evaluation = ModelEvaluationPipeline()
+    evaluation.main()
     logging.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 except Exception as e:
     raise e 

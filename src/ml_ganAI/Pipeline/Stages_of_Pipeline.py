@@ -2,6 +2,7 @@ from src.ml_ganAI.components.data_ingestion import DataIngestion
 from src.ml_ganAI.components.data_validation import DataValidation
 from src.ml_ganAI.components.data_transfomation import DataTransform
 from src.ml_ganAI.components.model_trainer import ModelTrainer
+from src.ml_ganAI.components.model_evaluation import ModelEvaluation
 from src.ml_ganAI.Config.config_entity import DataTransfomationConfig
 from src.ml_ganAI import logging
 
@@ -45,7 +46,16 @@ class ModelTrainPipeline:
     
     def main(self):
         trainer = ModelTrainer()
-        trainer.initiate_model_training()                   
+        trainer.initiate_model_training()        
+        
+class ModelEvaluationPipeline:
+    def __init__(self):
+        pass
+    
+    def main(self):
+        evaluation = ModelEvaluation()
+        evaluation.evaluation()                   
+                                     
                   
                     
         

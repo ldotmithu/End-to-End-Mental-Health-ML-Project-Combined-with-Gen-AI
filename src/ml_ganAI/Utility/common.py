@@ -3,6 +3,7 @@ from src.ml_ganAI import logging
 import os 
 import yaml
 import numpy as np 
+import json
 
 def Create_Folder(file_path):
     try:
@@ -42,3 +43,12 @@ def remove_out(data,col):
     data = data[(data[col] > lower) & (data[col] < upper)]
     logging.info(f"remove the outlier {col}")
     return data    
+
+def save_object(file_path,obj):
+    try:
+        with open(file_path,'w') as f:
+            metrics =json.dump(obj,f)      
+            logging.info(f'save the {file_path}')
+            return metrics
+    except Exception as e:
+        raise e      
