@@ -13,6 +13,14 @@ class DataIngestionConfig:
 class DataValidationConfig:
     root_dir:Path = "artifacts/data_validation"
     data_path:Path = "artifacts/data_ingestion"
-    status_path:str = "artifacts/data_validation/Status.txt"
+    status_path:Path = "artifacts/data_validation/Status.txt"
+
+@dataclass
+class DataTransfomationConfig:
+    root_dir:Path = "artifacts/data_transform"
+    status_path:Path = "artifacts/data_validation/Status.txt"
+    data_path:Path = "artifacts/data_ingestion"
+    preprocess_path:str = "preprocess.pkl"
+        
     
     

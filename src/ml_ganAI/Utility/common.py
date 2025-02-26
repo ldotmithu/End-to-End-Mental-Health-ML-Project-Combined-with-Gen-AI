@@ -2,6 +2,7 @@ from pathlib import Path
 from src.ml_ganAI import logging
 import os 
 import yaml
+import numpy as np 
 
 def Create_Folder(file_path):
     try:
@@ -31,3 +32,13 @@ def check_xls_occur(dir_path):
     else:
         logging.error("Multipule xls files are there")
         return None  
+    
+def remove_out(data,col):
+    Q1 = np.percentile(data[col],25)
+    Q3 = np.percentile(data[col],75)
+    IQR = Q3-Q1
+    lower = Q1 - 1.5 * IQR
+    upper = Q3 +1.5 *IQR
+    data = data[(data[col] > lower) & (data[col] < upper)]
+    logging.info(f"remove the outlier {col}")
+    return data    

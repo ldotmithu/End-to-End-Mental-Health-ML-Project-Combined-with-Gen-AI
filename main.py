@@ -1,4 +1,5 @@
-from src.ml_ganAI.Pipeline.Stages_of_Pipeline import DataIngestionPipeline,DataValidationPipeline
+from src.ml_ganAI.Pipeline.Stages_of_Pipeline import (DataIngestionPipeline,DataValidationPipeline,
+                                                      DataTransformPipeline)
 from src.ml_ganAI import logging
 
 try:
@@ -16,4 +17,13 @@ try:
     logging.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 except Exception as e:
     raise e 
+
+try:
+    logging.info(">>>>>>Data Transfomation>>>>>>>")
+    transform = DataTransformPipeline()
+    transform.main()
+    logging.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+except Exception as e:
+    raise e 
+
 

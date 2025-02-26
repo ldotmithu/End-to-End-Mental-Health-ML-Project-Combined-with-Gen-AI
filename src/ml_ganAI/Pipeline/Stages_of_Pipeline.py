@@ -1,5 +1,9 @@
 from src.ml_ganAI.components.data_ingestion import DataIngestion
 from src.ml_ganAI.components.data_validation import DataValidation
+from src.ml_ganAI.components.data_transfomation import DataTransform
+from src.ml_ganAI.Config.config_entity import DataTransfomationConfig
+from src.ml_ganAI import logging
+
 
 
 class DataIngestionPipeline:
@@ -19,4 +23,18 @@ class DataValidationPipeline:
         validation = DataValidation()
         validation.check_columns_validation()    
       
+class DataTransformPipeline:
+    def __init__(self):
+        self.transform = DataTransfomationConfig()
+    
+    def main(self):
+        staus_path = self.transform.status_path
+        with open (staus_path,"r") as f:
+            status = f.read().split(":")[-1].strip()
+            if status != "True":
+                logging.error('Data Validation Sataus is False')
+            else:    
+                transform = DataTransform()
+                transform.get_initiate_preprocess()    
+                    
         
