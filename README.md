@@ -66,7 +66,7 @@ This project is licensed under the **Apache-2.0 license**.
 
 ## **Glance of the Project**
 
-![image](https://github.com/ldotmithu/Dataset/blob/main/Screenshot%20(10).png)
+![image](https://github.com/ldotmithu/Dataset/blob/main/mlwithgenai.png)
 ---
 
 Feel free to update or modify the README as needed. Happy coding! 😊
