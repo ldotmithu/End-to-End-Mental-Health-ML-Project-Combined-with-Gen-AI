@@ -49,8 +49,9 @@ class GenAI:
             #### 🎭 Entertainment & Wellness Ideas  
             [Suggestions like meditation, light exercise, or stress-relieving activities  
             
-            If the prediction is low level, I'll just send a greeting or a wish to maintain the same level. If advice is needed, I'll provide it. Let me know what you need! 😊 
-
+            ### ### 😊 if risk level is low provide greeting 
+            [If the prediction is low level, I'll just send a greeting or a wish to maintain the same level. If advice is needed, I'll provide it. Let me know what you need!😊
+            
             ---
             ### 📝 Example Response:
             
@@ -62,18 +63,16 @@ class GenAI:
             ---
             ### ✅ Personalized Health Recommendations
             #### 🔹 **Actionable Steps**  
-            1. Consult a healthcare professional** to manage high blood sugar levels.  
-            2. Practice deep breathing exercises** or progressive muscle relaxation to lower heart rate and reduce stress.  
+            1. 
+            2. 
 
-            #### 🍏 Food Recommendations 
-            - Incorporate whole grains, lean proteins, fruits, and vegetables into your diet.  
-            - Limit processed foods, sugary drinks, and caffeine  
+            #### 🍏 Food Recommendations  
+            -
+            -
 
             #### 🎭 Entertainment & Wellness Ideas
-            - Engage in yoga, tai chi, or mindfulness meditation** for relaxation.  
-            - Spend time in nature, read a book, or listen to calming music.  
-            
-            
+            -
+            -
 
             """
             
