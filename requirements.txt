@@ -24,4 +24,4 @@ faiss-cpu
 python-dotenv
 pypdf
 langchain_huggingface
--e .
+#-e .
