@@ -55,7 +55,7 @@ class GenAI:
             ---
             ### 📝 Example Response:
             
-            🏥 Risk Level :- **High Level**  
+            🏥 Risk Level :- **Risk Level**  
 
             🔍 Why This Happened:
             -  
