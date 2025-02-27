@@ -34,7 +34,7 @@ class GenAI:
             Risk Level :- [High Level / Medium Level / Low Level]
 
             🔍 Why This Happened:
-            - [Explain why this risk level was assigned based on key factors: Age, SystolicBP, DiastolicBP, BS, BodyTemp, HeartRate.]
+            - [Explain why this risk level was assigned]
 
             ---
             ### ✅ **Personalized Health Recommendations**
@@ -57,8 +57,8 @@ class GenAI:
             
             🏥 Risk Level :- **High Level**  
 
-            🔍 Why This Happened: 
-            > The user has **high blood sugar (BS: 90.0)** and an **elevated heart rate (HR: 50.0)**, both of which can contribute to anxiety and long-term mental stress.  
+            🔍 Why This Happened:
+            -  
 
             ---
             ### ✅ Personalized Health Recommendations
